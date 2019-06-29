@@ -1,7 +1,7 @@
 
 // Array that contains every letter in the alphabet.
 
-let Letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+let WordBank = ["abandon", "adventure", "anchor", "ashore", "assault", "attack", "bandanna", "bandit", "barbaric", "barrel", "battle", "beach", "bounty", "brawl", "brutal", "cannon", "captain", "capture", "cargo", "cave", "challenge", "chest", "coast", "coins", "violent", "weapons", "compass", "confiscate", "conquest", "conquer", "contraband", "crew", "crook", "cruel", "curse", "cutthroat", "dagger", "danger", "deck", "desert", "island", "doubloon", "earring", "escape", "explore", "patch", "ferocious", "squabble", "flag", "fleet", "fortune", "gold", "greed", "gun", "gunpowder", "heist", "highseas", "hijack", "hook", "horizon", "hostile", "hurricane", "infamous", "island", "jewels", "kidnap", "land", "legend", "lookout", "loot", "map", "mates", "mayhem", "menace", "merchant", "mutiny", "navigate", "notorious", "ocean", "outcasts", "overboard", "parrot", "pegleg", "pirate", "pistol", "plank", "prowl", "quarters", "quest", "raid", "rat", "rations", "revenge", "riches", "roam", "robber", "rope", "ruthless", "sabotage", "sailing", "sailor", "scar", "scurvy", "seas", "seaweed", "ship", "shipmate", "shore", "silver", "thug", "tides", "torture", "trade", "treachery", "treasure", "truce", "skull", "bones", "steal", "swagger", "swashbuckling", "sword", "thief", "vandal", "vanquish", "vicious", "vile"];
 
 // Initial variable declarations.
 
