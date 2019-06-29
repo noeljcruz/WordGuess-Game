@@ -7,16 +7,20 @@ let WordBank = ["abandon", "adventure", "anchor", "ashore", "assault", "attack",
 
 let Wins = 0;
 let Losses = 0;
-let GuessesLeft = 9;
+let GuessesLeft = 12;
 let GuessesSoFar = "";
-let winsText = document.getElementById("wins-text");
-let lossesText = document.getElementById("losses-text");
-let leftText = document.getElementById("left-text");
-let sofarText = document.getElementById("sofar-text");
+let winsText = $("#wins-text");
+let lossesText = $("#losses-text");
+let wordText = $("#word-text");
+let leftText = $("#left-text");
+let sofarText = $("#sofar-text");
 
 // Starts off the game my having the Computer select a random letter from the Letters array.
 
-let CompLetter = Letters[Math.floor(Math.random() * Letters.length)];
+let CompWord = WordBank[Math.floor(Math.random() * WordBank.length)];
+console.log(CompWord);
+let WordArray = Array.from(CompWord);
+console.log(WordArray);
 
 document.onkeyup = function (event) {
     
@@ -33,7 +37,7 @@ document.onkeyup = function (event) {
         Wins++;
         GuessesLeft = 9;
         GuessesSoFar = "";
-        CompLetter = Letters[Math.floor(Math.random() * Letters.length)];
+        CompLetter = Letters[Math.floor(Math.random() * WordBank.length)];
     }
     
     // If the user runs out of guesses, then a loss is added, the guesses left resets to 9, the guesses so far resets to blank, and the computer selects a new letter at random.
@@ -42,13 +46,14 @@ document.onkeyup = function (event) {
         Losses++;
         GuessesLeft = 9;
         GuessesSoFar = "";
-        CompLetter = Letters[Math.floor(Math.random() * Letters.length)];
+        CompLetter = Letters[Math.floor(Math.random() * WordBank.length)];
     }
     
     // Displays the changes in the game with each key stroke.
     
     winsText.textContent = "Wins: " + Wins;
     lossesText.textContent = "Losses: " + Losses;
+    wordText.textContent = "Word: " + WordArray;
     leftText.textContent = "Guesses Left: " + GuessesLeft;
     sofarText.textContent = "Your Guesses so far: " + GuessesSoFar;
     
