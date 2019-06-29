@@ -7,64 +7,83 @@ let WordBank = ["abandon", "adventure", "anchor", "ashore", "assault", "attack",
 
 let Wins = 0;
 let Losses = 0;
-let Word = "";
-let GuessesLeft = 12;
-let GuessesSoFar = "";
+let Word;
+let Blanks;
+let GuessesLeft;
+let GuessesSoFar;
 let CompWord;
-let WordArray; 
+let WordArray;
+let BlankArray;
 
 // Starts off the game with a function that has the Computer select a random word from the WordBank array. Then it takes that word and creates a new array for it, with each character as an array item. After there is a for loop that will create underscore spaces for the length of the word chosen, and display them in the Word variable.
 
+function DefaultVars() {
+    Word = "";
+    Blanks = "";
+    GuessesLeft = 12;
+    GuessesSoFar = "";
+    BlankArray = [];
+}
+
 function NewWord() {
-    
+
     CompWord = WordBank[Math.floor(Math.random() * WordBank.length)];
-    
+
     WordArray = Array.from(CompWord);
 
     for (let i = 0; i < WordArray.length; i++) {
-        Word = Word + "_ ";
+        Word = Word + WordArray[i];
+        Blanks = Blanks + "_ ";
+        BlankArray[i] = "_ ";
     }
 
 }
 
+DefaultVars();
 NewWord();
+console.log(CompWord);
+console.log(Word);
+console.log(Blanks);
+console.log(BlankArray);
 
 document.onkeyup = function (event) {
-    
+
     // Upon pressing a key, the following happens: That key is logged as the user's guess, the number of guesses left is reduced by one, and the guess is added to the list of guesses so far.
-    
+
     let UserGuess = event.key;
     GuessesLeft--;
     GuessesSoFar = GuessesSoFar + UserGuess;
+
+    //
     
-    // If the user's guess matches the computer's letter, then a win is added, the guesses left resets to 9, the guesses so far resets to blank, and the computer selects a new letter at random.
     
-    if (UserGuess === WordArray) {
+    
+    //
+
+    if (BlankArray === WordArray) {
         Wins++;
-        Word = "";
-        GuessesLeft = 12;
-        GuessesSoFar = "";
+        DefaultVars();
         NewWord();
     }
-    
-    // If the user runs out of guesses, then a loss is added, the guesses left resets to 9, the guesses so far resets to blank, and the computer selects a new letter at random.
-    
+
+    //
+
     if (GuessesLeft < 1) {
         Losses++;
-        Word = "";
-        GuessesLeft = 12;
-        GuessesSoFar = "";
+        DefaultVars();
         NewWord();
         console.log(CompWord);
         console.log(Word);
+        console.log(Blanks);
+        console.log(BlankArray);
     }
-    
+
     // Displays the changes in the game with each key stroke.
-    
+
     $("#wins-text").text("Wins: " + Wins);
     $("#losses-text").text("Losses: " + Losses);
-    $("#word-text").text("Word: " + Word);
+    $("#word-text").text("Word: " + BlankArray);
     $("#left-text").text("Guesses Left: " + GuessesLeft);
     $("#sofar-text").text("Your Guesses so far: " + GuessesSoFar);
-    
+
 } 
