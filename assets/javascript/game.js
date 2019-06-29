@@ -1,14 +1,13 @@
 
-// Array that contains every letter in the alphabet.
+// Bank of words that are associated with piracy.
 
-let WordBank = ["abandon", "adventure", "anchor", "ashore", "assault", "attack", "bandanna", "bandit", "barbaric", "barrel", "battle", "beach", "bounty", "brawl", "brutal", "cannon", "captain", "capture", "cargo", "cave", "challenge", "chest", "coast", "coins", "violent", "weapons", "compass", "confiscate", "conquest", "conquer", "contraband", "crew", "crook", "cruel", "curse", "cutthroat", "dagger", "danger", "deck", "desert", "island", "doubloon", "earring", "escape", "explore", "patch", "ferocious", "squabble", "flag", "fleet", "fortune", "gold", "greed", "gun", "gunpowder", "heist", "highseas", "hijack", "hook", "horizon", "hostile", "hurricane", "infamous", "island", "jewels", "kidnap", "land", "legend", "lookout", "loot", "map", "mates", "mayhem", "menace", "merchant", "mutiny", "navigate", "notorious", "ocean", "outcasts", "overboard", "parrot", "pegleg", "pirate", "pistol", "plank", "prowl", "quarters", "quest", "raid", "rat", "rations", "revenge", "riches", "roam", "robber", "rope", "ruthless", "sabotage", "sailing", "sailor", "scar", "scurvy", "seas", "seaweed", "ship", "shipmate", "shore", "silver", "thug", "tides", "torture", "trade", "treachery", "treasure", "truce", "skull", "bones", "steal", "swagger", "swashbuckling", "sword", "thief", "vandal", "vanquish", "vicious", "vile"];
+let WordBank = ["abandon", "adventure", "anchor", "ashore", "assault", "attack", "bandanna", "bandit", "barbaric", "barrel", "battle", "beach", "bounty", "brawl", "brutal", "cannon", "captain", "capture", "cargo", "cave", "challenge", "chest", "coast", "coins", "violent", "weapons", "compass", "confiscate", "conquest", "conquer", "contraband", "crew", "crook", "cruel", "curse", "cutthroat", "dagger", "danger", "deck", "desert", "island", "doubloon", "earring", "escape", "explore", "patch", "ferocious", "squabble", "flag", "fleet", "fortune", "gold", "greed", "gun", "gunpowder", "heist", "highseas", "hijack", "hook", "horizon", "hostile", "hurricane", "infamous", "island", "jewels", "kidnap", "land", "legend", "lookout", "loot", "map", "mates", "mayhem", "menace", "merchant", "mutiny", "navigate", "notorious", "ocean", "outcasts", "overboard", "parrot", "pegleg", "pirate", "pistol", "plank", "prowl", "quarters", "quest", "raid", "rat", "rations", "revenge", "riches", "roam", "robber", "rope", "ruthless", "sabotage", "sailing", "sailor", "scar", "scurvy", "seas", "seaweed", "ship", "shipmate", "shore", "silver", "thug", "tides", "torture", "trade", "treachery", "treasure", "truce", "skull", "bones", "steal", "swagger", "sword", "thief", "vandal", "vanquish", "vicious", "vile"];
 
 // Initial variable declarations.
 
 let Wins = 0;
 let Losses = 0;
 let Word;
-let Blanks;
 let GuessesLeft;
 let GuessesSoFar;
 let CompWord;
@@ -19,7 +18,6 @@ let BlankArray;
 
 function DefaultVars() {
     Word = "";
-    Blanks = "";
     GuessesLeft = 12;
     GuessesSoFar = "";
     BlankArray = [];
@@ -33,7 +31,6 @@ function NewWord() {
 
     for (let i = 0; i < WordArray.length; i++) {
         Word = Word + WordArray[i];
-        Blanks = Blanks + "_ ";
         BlankArray[i] = "_ ";
     }
 
@@ -52,28 +49,22 @@ document.onkeyup = function (event) {
     GuessesSoFar = GuessesSoFar + UserGuess;
 
     //
-    
-    console.log(WordArray.includes(UserGuess));
-    
-    if (WordArray.includes(UserGuess)) {
 
-        let indices = [];
-        let idx = WordArray.indexOf(UserGuess);
-        while (idx != -1) {
-            indices.push(idx);
-            idx = WordArray.indexOf(UserGuess, idx + 1);
+    let indexes = [];
+    for (let i = 0; i < WordArray.length; i++) {
+        if (WordArray[i] === UserGuess) {
+            indexes.push(i);
+            BlankArray.splice(indexes, 1, UserGuess);
         }
-        
-        console.log(indices);
-
     }
 
     //
 
-    if (BlankArray === WordArray) {
+    if (BlankArray.toString() === WordArray.toString()) {
         Wins++;
         DefaultVars();
         NewWord();
+        console.log(Word);
     }
 
     //
@@ -82,6 +73,7 @@ document.onkeyup = function (event) {
         Losses++;
         DefaultVars();
         NewWord();
+        console.log(Word);
     }
 
     // Displays the changes in the game with each key stroke.
@@ -92,4 +84,4 @@ document.onkeyup = function (event) {
     $("#left-text").text("Guesses Left: " + GuessesLeft);
     $("#sofar-text").text("Your Guesses so far: " + GuessesSoFar);
 
-} 
+}
