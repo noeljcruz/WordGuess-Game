@@ -41,10 +41,7 @@ function NewWord() {
 
 DefaultVars();
 NewWord();
-console.log(CompWord);
 console.log(Word);
-console.log(Blanks);
-console.log(BlankArray);
 
 document.onkeyup = function (event) {
 
@@ -56,8 +53,21 @@ document.onkeyup = function (event) {
 
     //
     
+    console.log(WordArray.includes(UserGuess));
     
-    
+    if (WordArray.includes(UserGuess)) {
+
+        let indices = [];
+        let idx = WordArray.indexOf(UserGuess);
+        while (idx != -1) {
+            indices.push(idx);
+            idx = WordArray.indexOf(UserGuess, idx + 1);
+        }
+        
+        console.log(indices);
+
+    }
+
     //
 
     if (BlankArray === WordArray) {
@@ -72,10 +82,6 @@ document.onkeyup = function (event) {
         Losses++;
         DefaultVars();
         NewWord();
-        console.log(CompWord);
-        console.log(Word);
-        console.log(Blanks);
-        console.log(BlankArray);
     }
 
     // Displays the changes in the game with each key stroke.
