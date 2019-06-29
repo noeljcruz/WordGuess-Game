@@ -7,20 +7,27 @@ let WordBank = ["abandon", "adventure", "anchor", "ashore", "assault", "attack",
 
 let Wins = 0;
 let Losses = 0;
+let Word = "";
 let GuessesLeft = 12;
 let GuessesSoFar = "";
-let winsText = $("#wins-text");
-let lossesText = $("#losses-text");
-let wordText = $("#word-text");
-let leftText = $("#left-text");
-let sofarText = $("#sofar-text");
+let CompWord;
+let WordArray; 
 
-// Starts off the game my having the Computer select a random letter from the Letters array.
+// Starts off the game with a function that has the Computer select a random word from the WordBank array. Then it takes that word and creates a new array for it, with each character as an array item. After there is a for loop that will create underscore spaces for the length of the word chosen, and display them in the Word variable.
 
-let CompWord = WordBank[Math.floor(Math.random() * WordBank.length)];
-console.log(CompWord);
-let WordArray = Array.from(CompWord);
-console.log(WordArray);
+function NewWord() {
+    
+    CompWord = WordBank[Math.floor(Math.random() * WordBank.length)];
+    
+    WordArray = Array.from(CompWord);
+
+    for (let i = 0; i < WordArray.length; i++) {
+        Word = Word + "_ ";
+    }
+
+}
+
+NewWord();
 
 document.onkeyup = function (event) {
     
@@ -30,31 +37,34 @@ document.onkeyup = function (event) {
     GuessesLeft--;
     GuessesSoFar = GuessesSoFar + UserGuess;
     
-    
     // If the user's guess matches the computer's letter, then a win is added, the guesses left resets to 9, the guesses so far resets to blank, and the computer selects a new letter at random.
     
-    if (UserGuess === CompLetter) {
+    if (UserGuess === WordArray) {
         Wins++;
-        GuessesLeft = 9;
+        Word = "";
+        GuessesLeft = 12;
         GuessesSoFar = "";
-        CompLetter = Letters[Math.floor(Math.random() * WordBank.length)];
+        NewWord();
     }
     
     // If the user runs out of guesses, then a loss is added, the guesses left resets to 9, the guesses so far resets to blank, and the computer selects a new letter at random.
     
     if (GuessesLeft < 1) {
         Losses++;
-        GuessesLeft = 9;
+        Word = "";
+        GuessesLeft = 12;
         GuessesSoFar = "";
-        CompLetter = Letters[Math.floor(Math.random() * WordBank.length)];
+        NewWord();
+        console.log(CompWord);
+        console.log(Word);
     }
     
     // Displays the changes in the game with each key stroke.
     
-    winsText.textContent = "Wins: " + Wins;
-    lossesText.textContent = "Losses: " + Losses;
-    wordText.textContent = "Word: " + WordArray;
-    leftText.textContent = "Guesses Left: " + GuessesLeft;
-    sofarText.textContent = "Your Guesses so far: " + GuessesSoFar;
+    $("#wins-text").text("Wins: " + Wins);
+    $("#losses-text").text("Losses: " + Losses);
+    $("#word-text").text("Word: " + Word);
+    $("#left-text").text("Guesses Left: " + GuessesLeft);
+    $("#sofar-text").text("Your Guesses so far: " + GuessesSoFar);
     
 } 
