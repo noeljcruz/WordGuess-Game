@@ -50,9 +50,9 @@ document.onkeyup = function (event) {
 
     //
 
-    let indexes = [];
     for (let i = 0; i < WordArray.length; i++) {
         if (WordArray[i] === UserGuess) {
+            let indexes = [];
             indexes.push(i);
             BlankArray.splice(indexes, 1, UserGuess);
         }
