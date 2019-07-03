@@ -5,25 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Guess Game</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
 
-    <h1>ARRRGG!!! This be a Word Game, Matey!!</h1>
-
-    <p>Choose yer letters wisely, lest ye walk the plank!!</p>
-
-    <div id="wins-text">Wins: 0</div>
-
-    <div id="losses-text">Losses: 0</div>
-
-    <div id="word-text">Word: [blank]</div>
-
-    <div id="left-text">Guesses Left: 12</div>
-
-    <div id="sofar-text">Your Guesses so far:</div>
+    <div class="jumbotron">
+        <h1 class="display-4">ARRRGG!!! This be a Word Game, Matey!!</h1>
+        <p class="lead">Choose yer letters wisely, lest ye walk the plank!!</p>
+        <hr class="my-4">
+        <div id="wins-text">Wins: 0</div>
+        <div id="losses-text">Losses: 0</div>
+        <div id="word-text">Word: [blank]</div>
+        <div id="left-text">Guesses Left: 12</div>
+        <div id="sofar-text">Your Guesses so far:</div>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Button</a>
+    </div>
 
     <script src="assets/javascript/game.js"></script>
 
